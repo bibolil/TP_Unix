@@ -5,6 +5,7 @@
 #include <signal.h>
 #include <stdlib.h>
 #include <sys/wait.h>
+#include "serv_cli_fifo.h"
 
 // Handler pour le réveil du serveur suite à la réception du signal SIGUSR1
 void hand_reveil(int sig) {
@@ -25,7 +26,7 @@ void fin_serveur(int sig) {
     child_pid = fork();
     if (child_pid == 0) {
         // processus enfant
-        execlp("rm", "rm", "-r", "/tmp/tube1", NULL);
+        execlp("rm", "rm", "-r", FIFO1, NULL);
         // en cas d'erreur
         perror("execlp");
         exit(1);
@@ -41,7 +42,7 @@ void fin_serveur(int sig) {
     child_pid = fork();
     if (child_pid == 0) {
         // processus enfant
-        execlp("rm", "rm", "-r", "/tmp/tube2", NULL);
+        execlp("rm", "rm", "-r", FIFO2, NULL);
         // en cas d'erreur
         perror("execlp");
         exit(1);
