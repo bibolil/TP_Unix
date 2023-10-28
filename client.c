@@ -50,7 +50,7 @@ int main() {
     printf("\n");
 
     // Fermeture des tubes
-    close(fd_fifo2);
+    close(fd_fifo1);
     close(fd_fifo2);
 
     return 0;
